@@ -1,0 +1,28 @@
+# Conda environment of this repository: the packages of the FWIGAN environment of the SiameseFWI and
+# SiameseFit repositories, trimmed (PyTorch 1.7.1 + CUDA 11.0).
+# Deepwave 0.0.8 is NOT listed here: it is built from ./deepwave-old
+# by install_env.sh, as instructed in the official repositories.
+name: xai-fwi
+channels:
+  - conda-forge
+dependencies:
+  - python=3.8
+  - pip
+  - setuptools=68.2.2
+  - ipykernel
+  - notebook
+  # nvcc from CUDA 11.x only accepts gcc <= 11 (used to build deepwave-old)
+  - gxx_linux-64=11
+  - pip:
+      # CUDA 11.0 wheels are only hosted on the PyTorch index
+      - --find-links https://download.pytorch.org/whl/torch_stable.html
+      - torch==1.7.1+cu110
+      - torchvision==0.8.2+cu110
+      - numpy==1.24.3
+      - scipy==1.8.0
+      - matplotlib==3.5.1
+      - torchsummary==1.5.1
+      - tqdm==4.66.1
+      - h5py==3.10.0
+      - scikit-image==0.19.2
+      - pytorch-msssim==1.0.0
